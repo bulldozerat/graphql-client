@@ -49313,25 +49313,13 @@ var _graphqlTag = _interopRequireDefault(require("graphql-tag"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const link = new _apolloLinkHttp.HttpLink({
-  uri: 'https://rickandmortyapi.com/graphql'
+  uri: 'http://localhost:4000/'
 });
 const cache = new _apolloCacheInmemory.InMemoryCache();
 const client = new _apolloClient.ApolloClient({
   link,
   cache
 });
-const query = _graphqlTag.default`
-  {
-    characters {
-      results {
-        name
-      }
-    }
-  }
-`;
-client.query({
-  query
-}).then(resul => console.log(resul));
 var _default = client;
 exports.default = _default;
 },{"apollo-client":"../node_modules/apollo-client/bundle.esm.js","apollo-cache-inmemory":"../node_modules/apollo-cache-inmemory/lib/bundle.esm.js","apollo-link-http":"../node_modules/apollo-link-http/lib/bundle.esm.js","graphql-tag":"../node_modules/graphql-tag/src/index.js"}],"src/components/Header.js":[function(require,module,exports) {
@@ -56981,8 +56969,31 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
+const query = _graphqlTag.default`
+  query Test {
+    pets {
+      id
+      type
+      name
+      owner {
+        id
+        username
+      }
+      img
+      createdAt
+    }
+  }
+`;
+
 function Pets() {
   const [modal, setModal] = (0, _react.useState)(false);
+  const {
+    data,
+    loading,
+    error
+  } = (0, _reactHooks.useQuery)(query);
+  if (error) console.log(error);
+  console.log('data: ', data);
 
   const onSubmit = input => {
     setModal(false);
@@ -57134,7 +57145,9 @@ require("./index.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const Root = () => _react.default.createElement(_reactRouterDom.BrowserRouter, null, _react.default.createElement(_App.default, null));
+const Root = () => _react.default.createElement(_reactRouterDom.BrowserRouter, null, _react.default.createElement(_reactHooks.ApolloProvider, {
+  client: _client.default
+}, _react.default.createElement(_App.default, null)));
 
 _reactDom.default.render(_react.default.createElement(Root, null), document.getElementById('app'));
 
@@ -57169,7 +57182,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52154" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60544" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
