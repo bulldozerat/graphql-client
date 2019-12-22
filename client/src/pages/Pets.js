@@ -24,7 +24,9 @@ const query = gql`
 export default function Pets() {
   const [modal, setModal] = useState(false);
   const { data, loading, error } = useQuery(query);
+  const wholeQuery = useQuery(query);
   if (error) console.log(error);
+  console.log('wholeQuery: ', wholeQuery);
 
   console.log('data: ', data);
 
@@ -49,9 +51,7 @@ export default function Pets() {
           </div>
         </div>
       </section>
-      <section>
-        <PetsList />
-      </section>
+      <section>{data && <PetsList pets={data.pets} />}</section>
     </div>
   );
 }

@@ -56992,7 +56992,9 @@ function Pets() {
     loading,
     error
   } = (0, _reactHooks.useQuery)(query);
+  const wholeQuery = (0, _reactHooks.useQuery)(query);
   if (error) console.log(error);
+  console.log('wholeQuery: ', wholeQuery);
   console.log('data: ', data);
 
   const onSubmit = input => {
@@ -57016,7 +57018,9 @@ function Pets() {
     className: "col-xs-2"
   }, _react.default.createElement("button", {
     onClick: () => setModal(true)
-  }, "new pet")))), _react.default.createElement("section", null, _react.default.createElement(_PetsList.default, null)));
+  }, "new pet")))), _react.default.createElement("section", null, data && _react.default.createElement(_PetsList.default, {
+    pets: data.pets
+  })));
 }
 },{"react":"../node_modules/react/index.js","graphql-tag":"../node_modules/graphql-tag/src/index.js","@apollo/react-hooks":"../node_modules/@apollo/react-hooks/lib/react-hooks.esm.js","../components/PetsList":"src/components/PetsList.js","../components/NewPetModal":"src/components/NewPetModal.js","../components/Loader":"src/components/Loader.js"}],"src/components/App.js":[function(require,module,exports) {
 "use strict";
@@ -57182,7 +57186,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60544" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61556" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

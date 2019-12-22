@@ -15,6 +15,18 @@
       },
       "img": "img-src",
       "createdAt": 20
+    },
+    {
+      "id": 2,
+      "type": "CAT",
+      "name": "beti",
+      "owner": {
+        "id": 1,
+        "username": "Ani",
+        "pets": "beti"
+      },
+      "img": "img-src",
+      "createdAt": 30
     }
   ]
 }
