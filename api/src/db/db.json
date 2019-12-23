@@ -17,22 +17,31 @@
       "createdAt": 20
     },
     {
-      "id": 2,
-      "type": "CAT",
-      "name": "beti",
-      "owner": {
-        "id": 1,
-        "username": "Ani",
-        "pets": "beti"
-      },
-      "img": "img-src",
-      "createdAt": 30
+      "id": "xxqSFTuduYwP-TgQpPd28",
+      "createdAt": 1577093543092,
+      "name": "df",
+      "type": "DOG",
+      "user": "jBWMVGjm50l6LGwepDoty"
     },
     {
-      "id": "6J5o5G7mo1Ki81H4tqVHF",
-      "createdAt": 1577056043647,
-      "name": "Test",
+      "id": "nJjcgWnXYPEbuLafc-Hcw",
+      "createdAt": 1577093643274,
+      "name": "saf",
+      "type": "DOG",
+      "user": "jBWMVGjm50l6LGwepDoty"
+    },
+    {
+      "id": "QTG4hU63ZaSdeTtZQJnGK",
+      "createdAt": 1577093709575,
+      "name": "fdsg",
       "type": "CAT",
+      "user": "jBWMVGjm50l6LGwepDoty"
+    },
+    {
+      "id": "gNhBAja_epCL5PtatU9_s",
+      "createdAt": 1577093715621,
+      "name": "sdgregre",
+      "type": "DOG",
       "user": "jBWMVGjm50l6LGwepDoty"
     }
   ]

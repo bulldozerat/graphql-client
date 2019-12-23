@@ -56997,7 +56997,24 @@ function Pets() {
     loading,
     error
   } = (0, _reactHooks.useQuery)(ALL_PETS);
-  const [createPet, newPet] = (0, _reactHooks.useMutation)(NEW_PET);
+  const [createPet, newPet] = (0, _reactHooks.useMutation)(NEW_PET, {
+    update(cache, {
+      data: {
+        addPet
+      }
+    }) {
+      const data = cache.readQuery({
+        query: ALL_PETS
+      });
+      cache.writeQuery({
+        query: ALL_PETS,
+        data: {
+          pets: [addPet, ...data.pets]
+        }
+      });
+    }
+
+  });
   if (error || newPet.error) return _react.default.createElement("h1", null, "Some went wrongs");
   if (loading || newPet.loading) return _react.default.createElement(_Loader.default, null);
   console.log('data: ', data);
@@ -57196,7 +57213,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56700" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58464" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
